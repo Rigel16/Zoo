@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un compte</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <h1>Créer un compte</h1>
+    <div class="form-container">
+        <label for="email">Courriel (Nom d'utilisateur) :</label>
+        <input type="email" id="email" placeholder="Entrez votre adresse email">
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" placeholder="Entrez votre mot de passe">
+        <label for="role">Rôle :</label>
+        <select id="role">
+            <option value="employee">Employé</option>
+            <option value="veterinarian">Vétérinaire</option>
+        </select>
+        <button id="createAccountBtn">Créer le compte</button>
+    </div>
+
+    <script>
+        document.getElementById('createAccountBtn').addEventListener('click', () => {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const role = document.getElementById('role').value;
+
+    // Send email containing username (email) to the user
+    sendEmail(email);
+
+    // Implement logic to save email, password, and role in the database
+});
+
+function sendEmail(email) {
+    // Implement logic to send email
+    console.log(`Email sent to ${email}`);
+}
+
+    </script>
+</body>
+</html>

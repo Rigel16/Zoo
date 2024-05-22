@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitats du Zoo Arcadia</title>
+    <link rel="stylesheet" href="exemple.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+			<nav>
+				<a href="index.html" class="logo" id="logo">Arcadia <br>ZOO</a>
+				<ul>
+					<li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+					<li class="nav-item deroulant"><a href="#" class="nav-link">Services</a>
+                        <ul class="sous">
+                            <li><a href="restauration.html">Restaurations</a></li>
+                            <li><a href="visite_guide.html">visite des habitats avec guide</a></li>
+                            <li><a href="visite_zoo_train.html">visite du zoo en petit train </a></li>
+                        </ul>
+                    </li>
+					<li class="nav-item"><a href="habitation.html" class="nav-link">Habitations</a></li>
+					<li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+					<li class="nav-item"><a href="connection.html" class="nav-link">Connexion</a></li>
+					<!--<li class="nav-item">
+						<button type="button" , role="button" class="btn" id="displayForm">Se Connecter</button>
+					</li>-->
+				</ul>
+			</nav>
+
+			<section>
+				<div class="sec-container">
+					<div class="formWrapper">
+						<div class="card">
+							<div class="card-header">
+								<div id="forLogin" class="form-header active">Se connecter</div>
+								<div id="forRegister" class="form-header">S'inscrire</div>
+							</div>
+							<div class="card-body" id="formContainer">
+								<form action="" id="loginForm">
+									<input type="text" class="form-control" placeholder="@Utilisateur" />
+									<input type="password" class="form-control" placeholder="Mot de passe" />
+									<label for="remember">
+										<input type="checkbox" class="form-check" id="remember" />
+										Se Souvenir de moi
+									</label>
+									<button class="formButton">Connexion</button>
+								</form>
+
+								<form action="" id="registerForm" class="toggleForm">
+									<input type="text" class="form-control" placeholder="@utilisateur..." />
+									<input type="text" class="form-control" placeholder="Mot de passe..." />
+									<input type="text" class="form-control" placeholder="Confirmer mot de passe..." />
+									<label for="remember">
+										<input type="checkbox" class="form-check" id="privacy" />
+										J'accepte les termes de l'accord
+									</label>
+									<button class="formButton">Inscription</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+    </header>
+    <main>
+        <section id="habitats">
+            <div class="habitat" data-habitat="savane">
+                <img style="width: 200px;" src="images/enclos lion.webp" alt="Savane">
+                <h2>Savane</h2>
+            </div>
+            <div class="habitat" data-habitat="jungle">
+                <img style="width: 200px;" src="images/Enclos koala.jpeg" alt="Jungle">
+                <h2>Jungle</h2>
+            </div>
+            <div class="habitat" data-habitat="marais">
+                <img style="width: 200px;" src="images/enclos crocodiles.jpeg" alt="Marais">
+                <h2>Marais</h2>
+            </div>
+        </section>
+        <section id="habitat-details" class="hidden">
+            <button id="back-button">Retour</button>
+            <h2 id="habitat-name"></h2>
+            <p id="habitat-description"></p>
+            <div id="animal-list"></div>
+        </section>
+        <section id="animal-details" class="hidden">
+            <button id="animal-back-button">Retour</button>
+            <h2 id="animal-name"></h2>
+            <img id="animal-image" alt="">
+            <p id="animal-species"></p>
+            <p id="animal-status"></p>
+            <p id="animal-food"></p>
+            <p id="animal-grams"></p>
+            <p id="animal-date"></p>
+            <p id="animal-detail"></p>
+        </section>
+    </main>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const habitats = document.querySelectorAll('.habitat');
+    const habitatDetailsSection = document.getElementById('habitat-details');
+    const animalDetailsSection = document.getElementById('animal-details');
+    const backButton = document.getElementById('back-button');
+    const animalBackButton = document.getElementById('animal-back-button');
+    const animalList = document.getElementById('animal-list');
+
+    const habitatData = {
+        savane: {
+            name: 'Savane',
+            description: 'La savane abrite des animaux impressionnants.',
+            animals: [
+                { name: 'Simba', species: 'Lion', image: 'images/hugo-herrera-5h1_OwBxLNI-unsplash.jpg', status: 'En bonne santé', food: 'Viande', grams: 5000, date: '2023-05-20', detail: 'Aucune remarque' },
+                { name: 'Kelly', species: 'Zèbre', image: 'images/jeffrey-eisen-k1Z8oeroFsI-unsplash.jpg', status: 'En bonne santé', food: 'Herbe', grams: 2000, date: '2023-05-20', detail: 'Aucune remarque' },
+                { name: 'Anis', species: 'Girafe', image: 'images/alex-kairoff-wroYJ7eOS18-unsplash.jpg', status: 'En bonne santé', food: 'Feuilles', grams: 3000, date: '2023-05-20', detail: 'Aucune remarque' }
+            ]
+        },
+        jungle: {
+            name: 'Jungle',
+            description: 'La jungle est dense et humide.',
+            animals: [
+                { name: 'Joel', species: 'Koala', image: 'images/ellicia-4xNDhf0nA-Y-unsplash.jpg', status: 'En bonne santé', food: 'Feuilles d\'eucalyptus', grams: 500, date: '2023-05-20', detail: 'Aucune remarque' },
+                { name: 'Odi & Oda', species: 'Perroquet', image: 'images/bruno-martins-BYY_rYlZOkI-unsplash.jpg', status: 'En bonne santé', food: 'Fruits', grams: 200, date: '2023-05-20', detail: 'Aucune remarque' },
+                { name: 'Munie', species: 'Caméléon', image: 'images/arnold-straub-WWzYBomXDu8-unsplash.jpg', status: 'En bonne santé', food: 'Insectes', grams: 50, date: '2023-05-20', detail: 'Aucune remarque' }
+            ]
+        },
+        marais: {
+            name: 'Marais',
+            description: 'Le marais est humide et rempli de vie.',
+            animals: [
+                { name: 'Dani', species: 'Crocodile', image: 'images/dusan-veverkolog-0VL13XkKMo8-unsplash.jpg', status: 'En bonne santé', food: 'Viande', grams: 10000, date: '2023-05-20', detail: 'Aucune remarque' },
+                { name: 'Green', species: 'Serpent', image: 'images/tirza-van-dijk-xfpGpk4u8fU-unsplash.jpg', status: 'En bonne santé', food: 'Rongeurs', grams: 500, date: '2023-05-20', detail: 'Aucune remarque' }
+            ]
+        }
+    };
+
+    habitats.forEach(habitat => {
+        habitat.addEventListener('click', () => {
+            const habitatNameData = habitat.getAttribute('data-habitat');
+            const habitatInfo = habitatData[habitatNameData];
+
+            document.getElementById('habitat-name').textContent = habitatInfo.name;
+            document.getElementById('habitat-description').textContent = habitatInfo.description;
+
+            animalList.innerHTML = '';
+            habitatInfo.animals.forEach(animal => {
+                const animalItem = document.createElement('div');
+                const animalImage = document.createElement('img');
+                animalImage.src = animal.image;
+                animalImage.alt = `${animal.name} (${animal.species})`;
+                animalItem.textContent = `${animal.name} (${animal.species})`;
+                animalItem.appendChild(animalImage);
+                animalItem.classList.add('animal');
+                animalItem.setAttribute('data-name', animal.name);
+                animalItem.setAttribute('data-habitat', habitatNameData);
+                animalList.appendChild(animalItem);
+            });
+
+            document.getElementById('habitats').classList.add('hidden');
+            habitatDetailsSection.classList.remove('hidden');
+        });
+    });
+
+    backButton.addEventListener('click', () => {
+        habitatDetailsSection.classList.add('hidden');
+        document.getElementById('habitats').classList.remove('hidden');
+    });
+
+    animalList.addEventListener('click', (event) => {
+        if (event.target.closest('.animal')) {
+            const animalElement = event.target.closest('.animal');
+            const animalName = animalElement.getAttribute('data-name');
+            const habitatName = animalElement.getAttribute('data-habitat');
+            const animalData = habitatData[habitatName].animals.find(animal => animal.name === animalName);
+
+            document.getElementById('animal-name').textContent = animalData.name;
+            document.getElementById('animal-image').src = animalData.image;
+            document.getElementById('animal-image').alt = `${animalData.name} (${animalData.species})`;
+            document.getElementById('animal-species').textContent = `Espèce : ${animalData.species}`;
+            document.getElementById('animal-status').textContent = `État : ${animalData.status}`;
+            document.getElementById('animal-food').textContent = `Nourriture : ${animalData.food}`;
+            document.getElementById('animal-grams').textContent = `Grammage : ${animalData.grams} g`;
+            document.getElementById('animal-date').textContent = `Date de passage : ${animalData.date}`;
+            document.getElementById('animal-detail').textContent = `Détail : ${animalData.detail}`;
+
+            habitatDetailsSection.classList.add('hidden');
+            animalDetailsSection.classList.remove('hidden');
+        }
+    });
+
+    animalBackButton.addEventListener('click', () => {
+        animalDetailsSection.classList.add('hidden');
+        habitatDetailsSection.classList.remove('hidden');
+    });
+});
+
+
+    </script>
+</body>
+</html>
